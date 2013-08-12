@@ -25,7 +25,7 @@ app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.bodyParser());
 app.use(express.methodOverride());
-app.use(express.cookieParser('keyboard cat'));
+app.use(express.cookieParser('hyserver'));
 app.use(express.session({
   cookie: {maxAge: 60000},
   secret: settings.cookieSecret,
@@ -55,11 +55,6 @@ app.use(app.router);
 //app.use(express.router(routes));
 app.use(express.static(path.join(__dirname, 'public')));
 
-//add by fwj 404 redirect
-app.use(function(req, res, next){
-  //res.send(404, 'Sorry cant find that!');
-	res.redirect('404.html');
-});
 
 // development only
 if ('development' == app.get('env')) {
@@ -67,6 +62,13 @@ if ('development' == app.get('env')) {
 }
 
 routes(app);
+
+//add by fwj 404 redirect
+app.use(function(req, res, next){
+  //res.send(404, 'Sorry cant find that!');
+	res.redirect('404.html');
+});
+
 
 /*
 app.get('/', routes.index);

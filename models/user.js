@@ -24,6 +24,9 @@ User.prototype.save = function save(callback){
     password: this.password,
   };
   mongodb.open(function(err, db){
+ // mongodb.authenticate('test', 'test', function(err, result) {});
+     
+  
     if(err){
       return callback(err);
     }
